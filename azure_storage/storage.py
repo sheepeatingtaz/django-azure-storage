@@ -73,12 +73,12 @@ class AzureStorage(Storage):
             
             if self.cdn_host:
                 base_url = self.cdn_host
-            
-            self._container_url = base_url.format({
+            data = {
                 'protocol': self._get_protocol(),
                 'host': self._get_service()._get_host(),
                 'container': self.container,
-            })
+            }
+            self._container_url = base_url.format(**data)
 
         return self._container_url
 
